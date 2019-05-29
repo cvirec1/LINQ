@@ -14,7 +14,7 @@ namespace LINQ
         public static Product First01()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            return products.First(p => p.Category == "Confections");
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
             
             return null;
@@ -27,7 +27,7 @@ namespace LINQ
         public static string First02()
         {
             string[] strings = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
+            return strings.First(s => s.StartsWith("o"));
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
             
             return string.Empty;
@@ -40,7 +40,7 @@ namespace LINQ
         public static int FirstOrDefault01()
         {
             int[] numbers = { };
-
+            return numbers.FirstOrDefault();
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
             
             return 42;
@@ -53,7 +53,8 @@ namespace LINQ
         public static Product FirstOrDefault02()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            return products.FirstOrDefault(p => p.ProductID == 789);
+            
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
             
             return new Product();
@@ -66,9 +67,9 @@ namespace LINQ
         public static int ElementAt()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.Where(n => n > 5).ElementAt(1);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
-            
+
             return 42;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using LINQ.Data;
 using LINQ.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LINQ
 {
@@ -14,7 +15,7 @@ namespace LINQ
         public static IEnumerable<int> Take()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.Take(3);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new int[] { };
@@ -27,9 +28,15 @@ namespace LINQ
         public static IEnumerable<CustomerOrderDto> TakeNested()
         {
             List<Customer> customers = DataLoader.GetCustomerList();
-
+            var query = from c in customers
+                        where c.Region == "WA"
+                        from o in c.Orders                        
+                        select (new CustomerOrderDto(){ CustomerId = c.CustomerID, OrderId = o.OrderID})
+                        
+                        ;
+            //return customers.Where(c => c.Region == "WA").Select(c=>new CustomerDto { CustomerId = c.CustomerID, OrderCount = c.Orders.Count() });
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
-
+            return query;
             return new CustomerOrderDto[] { };
         }
 
@@ -40,7 +47,7 @@ namespace LINQ
         public static IEnumerable<int> Skip()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.Skip(4);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new int[] { };
@@ -66,7 +73,7 @@ namespace LINQ
         public static IEnumerable<int> TakeWhile()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.TakeWhile(n => n < 6);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new int[] { };
@@ -79,7 +86,7 @@ namespace LINQ
         public static IEnumerable<int> TakeWhileIndexed()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.TakeWhile((n, i) => n > i);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new int[] { };
@@ -92,7 +99,7 @@ namespace LINQ
         public static IEnumerable<int> SkipWhile()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.SkipWhile()
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new int[] { };

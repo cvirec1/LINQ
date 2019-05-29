@@ -1,6 +1,7 @@
 ﻿using LINQ.Data;
 using LINQ.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LINQ
 {
@@ -14,9 +15,9 @@ namespace LINQ
         public static IEnumerable<string> OrderBy01()
         {
             string[] words = { "cherry", "apple", "blueberry" };
-
+            var query = words.OrderBy(w => w);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
-
+            return query;
             return new string[] { };
         }
 
@@ -27,9 +28,9 @@ namespace LINQ
         public static IEnumerable<string> OrderBy02()
         {
             string[] words = { "cherry", "apple", "blueberry" };
-
+            var query = words.OrderBy(w => w.Length);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
-
+            return query;
             return new string[] { };
         }
 
@@ -40,9 +41,9 @@ namespace LINQ
         public static IEnumerable<Product> OrderBy03()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            var query = products.OrderBy(p => p.ProductName);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
-
+            return query;
             return new Product[] { };
         }
 
@@ -53,9 +54,9 @@ namespace LINQ
         public static IEnumerable<double> OrderByDescending01()
         {
             double[] doubles = { 1.7, 2.3, 1.9, 4.1, 2.9 };
-
+            var query = doubles.OrderByDescending(d => d);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
-
+            return query;
             return new double[] { };
         }
 
@@ -66,9 +67,9 @@ namespace LINQ
         public static IEnumerable<Product> OrderByDescending02()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            var query = products.OrderByDescending(p => p.UnitsInStock);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
-
+            return query;
             return new Product[] { };
         }
 
@@ -79,9 +80,9 @@ namespace LINQ
         public static IEnumerable<string> ThenOrderBy()
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
+            var query = digits.OrderBy(d=>d.Length).ThenBy(d=>d);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
-
+            return query;
             return new string[] { };
         }
 
@@ -92,9 +93,9 @@ namespace LINQ
         public static IEnumerable<string> Reverse()
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
+            var query = digits.Where(d=>d[1]=='i').Reverse();
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
-
+            return query;
             return new string[] { };
         }
     }

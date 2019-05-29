@@ -3,6 +3,7 @@ using LINQ.Models;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace LINQ
 {
     public static class Filtering
@@ -15,7 +16,7 @@ namespace LINQ
         public static IEnumerable<int> Where01()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
+            return numbers.Where(n => n < 5).Select(n => n);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new int[] { };
@@ -28,7 +29,7 @@ namespace LINQ
         public static IEnumerable<Product> Where02()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            return products.Where(p => p.UnitsInStock == 0).Select(p=>p);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new Product[] { };
@@ -41,7 +42,7 @@ namespace LINQ
         public static IEnumerable<Product> Where03()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            return products.Where(p => p.UnitsInStock > 0 && p.UnitPrice > 3);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new Product[] { };
@@ -54,9 +55,13 @@ namespace LINQ
         public static IEnumerable<CustomerDto> WhereDrillDown()
         {
             List<Customer> customers = DataLoader.GetCustomerList();
-
+            var query = from c in customers
+                        where c.Region == "WA"
+                        select new CustomerDto { CustomerId = c.CustomerID, OrderCount = c.Orders.Count() };
+            return query;
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
-
+            //var anonymousItems = from w in words
+            //                     select new { Upper = w.ToUpper(), Lower = w.ToLower() }
             return new CustomerDto[] { };
         }
 
@@ -67,7 +72,7 @@ namespace LINQ
         public static IEnumerable<string> WhereIndexed()
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
+            return digits.Where((d, index) => d.Length < index);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
 
             return new string[] { };

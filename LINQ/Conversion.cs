@@ -12,9 +12,9 @@ namespace LINQ
         public static double[] ToArray()
         {
             List<double> doubles = new List<double> { 1.7, 2.3, 1.9, 4.1, 2.9 };
-
+            var query = doubles.OrderByDescending(d => d).ToArray();
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
-
+            return query;
             return new double[] { };
         }
 
@@ -25,7 +25,7 @@ namespace LINQ
         public static List<string> ToList()
         {
             string[] words = { "cherry", "apple", "blueberry" };
-
+            return words.OrderBy(w => w).ToList();
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
             
             return new List<string>();

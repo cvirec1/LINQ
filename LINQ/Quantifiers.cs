@@ -14,7 +14,7 @@ namespace LINQ
         public static bool? Any01()
         {
             string[] words = { "believe", "relief", "receipt", "field" };
-
+            return words.Any(w => w.Contains("ei"));
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
             
             return null;
@@ -27,7 +27,7 @@ namespace LINQ
         public static IEnumerable<string> Any02()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            return products.Where(p => p.UnitsInStock == 0).Select(p => p.Category).Distinct();
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
             
             return new string[] { };
@@ -40,7 +40,7 @@ namespace LINQ
         public static bool? All01()
         {
             int[] numbers = { 1, 11, 3, 19, 41, 65, 19 };
-
+            return numbers.All(n => n % 2 == 1);
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!
             
             return null;
@@ -53,7 +53,7 @@ namespace LINQ
         public static IEnumerable<string> All02()
         {
             List<Product> products = DataLoader.GetProductList();
-
+            //return products.Where(p=>p.UnitsInStock)
             // !!! INSERT YOUR LINQ  MAGIC HERE !!!            
             
             return new string[] { };
